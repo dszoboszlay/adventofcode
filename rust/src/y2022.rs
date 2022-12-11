@@ -7,6 +7,7 @@ mod d03;
 mod d04;
 mod d05;
 mod d06;
+mod d07;
 
 pub fn solvers() -> Year {
     return HashMap::from([
@@ -16,5 +17,6 @@ pub fn solvers() -> Year {
         ( 4, d04::solvers()),
         ( 5, d05::solvers()),
         ( 6, d06::solvers()),
+        ( 7, d07::solvers()),
     ]);
 }
