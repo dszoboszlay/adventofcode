@@ -8,6 +8,7 @@ use std::time::Instant;
 pub mod utils;
 mod y2021;
 mod y2022;
+mod y2023;
 
 pub type Solver = fn(&String) -> String;
 pub type Day = (Option<Solver>, Option<Solver>);
@@ -18,6 +19,7 @@ fn main() {
     let years = HashMap::from([
         (2021, y2021::solvers()),
         (2022, y2022::solvers()),
+        (2023, y2023::solvers()),
     ]);
 
     let measure_in_loop = env::var("NOLOOP").is_err();
