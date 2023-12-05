@@ -1,3 +1,5 @@
+#![feature(btree_cursors)]
+
 use std::cmp::max;
 use std::collections::HashMap;
 use std::env;
