@@ -1,4 +1,5 @@
 #![feature(btree_cursors)]
+#![feature(binary_heap_drain_sorted)]
 
 use std::cmp::max;
 use std::collections::HashMap;
