@@ -11,7 +11,7 @@ mod d07;
 mod d08;
 mod d09;
 mod d10;
-//mod d11;
+mod d11;
 //mod d12;
 //mod d13;
 //mod d14;
@@ -39,7 +39,7 @@ pub fn solvers() -> Year {
         ( 8, d08::solvers()),
         ( 9, d09::solvers()),
         (10, d10::solvers()),
-//        (11, d11::solvers()),
+        (11, d11::solvers()),
 //        (12, d12::solvers()),
 //        (13, d13::solvers()),
 //        (14, d14::solvers()),
