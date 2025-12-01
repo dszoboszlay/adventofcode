@@ -12,6 +12,7 @@ pub mod utils;
 mod y2021;
 mod y2022;
 mod y2023;
+mod y2025;
 
 pub type Solver = fn(&String) -> String;
 pub type Day = (Option<Solver>, Option<Solver>);
@@ -23,6 +24,7 @@ fn main() {
         (2021, y2021::solvers()),
         (2022, y2022::solvers()),
         (2023, y2023::solvers()),
+        (2025, y2025::solvers()),
     ]);
 
     let measure_in_loop = env::var("NOLOOP").is_err();
@@ -40,7 +42,7 @@ fn main() {
                 let d: u16 = d.unwrap().parse().unwrap();
                 let p: u16 = p.unwrap().parse().unwrap();
                 let fp = Path::new(&f);
-        
+
                 let solver = years.get(&y).map(
                     |year| year.get(&d).map(
                         |(p1, p2)| match p {
@@ -49,7 +51,7 @@ fn main() {
                         }
                     )
                 ).flatten().flatten();
-         
+
                 match solver {
                     None => println!("N/A 0"),
                     Some(solver) => {
@@ -75,6 +77,6 @@ fn main() {
                 }
 
             }
-        }    
+        }
     }
 }

@@ -15,8 +15,8 @@ struct RangeDict(BTreeMap<i64, RangeShift>);
 
 impl RangeDict {
     fn look_up(&self, i: i64) -> i64 {
-        match self.0.upper_bound(Bound::Included(&i)).value() {
-            Some(&RangeShift {top, shift}) if top >= i => i + shift,
+        match self.0.upper_bound(Bound::Included(&i)).peek_prev() {
+            Some((&key, &val)) if val.top >= i => i + val.shift,
             _ => i
         }
     }
@@ -26,8 +26,8 @@ impl RangeDict {
         let max = range.1;
 
         let mut cursor = self.0.upper_bound(Bound::Included(&min));
-        while let Some(&bottom) = cursor.key() {
-            let &RangeShift {top, shift} = cursor.value().unwrap();
+        while let Some((&bottom, &val)) = cursor.peek_prev() {
+            let RangeShift {top, shift} = val;
 
             if bottom > max || min > top {
                 res.push((min, max));
@@ -43,10 +43,10 @@ impl RangeDict {
             } else {
                 res.push((min + shift, top + shift));
                 min = top + 1;
-                cursor.move_next();
+                cursor.next();
             }
         }
-        
+
         res.push((min, max));
     }
 
