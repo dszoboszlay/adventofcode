@@ -47,6 +47,14 @@ impl CharMap {
     }
   }
 
+  pub fn width(&self) -> usize {
+    self.width
+  }
+
+  pub fn height(&self) -> usize {
+    self.height
+  }
+
   pub fn iter(&self) -> CharMapIter<'_> {
     CharMapIter {
       map: &self,
@@ -133,6 +141,38 @@ impl<'a> Field<'a> {
 
   pub fn neighbours(&self) -> Vec<u8> {
     self.map.neighbours(self.coords())
+  }
+
+  pub fn up(&self) -> Field<'a> {
+    Field {
+      map: self.map,
+      x: self.x,
+      y: self.y - 1,
+    }
+  }
+
+  pub fn down(&self) -> Field<'a> {
+    Field {
+      map: self.map,
+      x: self.x,
+      y: self.y + 1,
+    }
+  }
+
+  pub fn left(&self) -> Field<'a> {
+    Field {
+      map: self.map,
+      x: self.x - 1,
+      y: self.y,
+    }
+  }
+
+  pub fn right(&self) -> Field<'a> {
+    Field {
+      map: self.map,
+      x: self.x + 1,
+      y: self.y,
+    }
   }
 }
 
